@@ -1,0 +1,14 @@
+const express = require("express");
+
+// mergeParams, to merge it with the ticket Routes
+const router = express.Router({ mergeParams: true });
+const { getNotes, addNote } = require("../controllers/noteController");
+
+const { protect } = require("../middleware/authMiddleware");
+
+router.route("/").get(protect, getNotes);
+router.route("/").post(protect, addNote);
+
+module.exports = router;
+
+// /api/tickets/:ticketId/notes
